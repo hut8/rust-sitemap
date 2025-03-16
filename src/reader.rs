@@ -124,6 +124,9 @@ impl<T: Read + Sized> Iterator for SiteMapReader<T> {
                         Ok(XmlEvent::Characters(data)) => {
                             self.text_content(data);
                         }
+                        Ok(XmlEvent::CData(data)) => {
+                            self.text_content(data);
+                        }
                         Err(error) => {
                             return Some(SiteMapEntity::Err(error));
                         }
